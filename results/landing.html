@@ -454,7 +454,7 @@
       color: white;
       box-shadow: 0 40px 90px rgba(17,19,24,.24);
     }
-    .founders-media { position: relative; align-self: stretch; z-index: 1; min-height: 680px; }
+    .founders-media { position: relative; grid-row: 1 / 3; align-self: stretch; z-index: 1; min-height: 680px; }
     .founders-media::before {
       content: "";
       position: absolute;
@@ -478,10 +478,10 @@
     .founder-name { position: absolute; z-index: 2; padding: 11px 15px; border-radius: 999px; background: rgba(255,255,255,.82); color: var(--ink); font-size: 12px; font-weight: 800; backdrop-filter: blur(12px); }
     .founder-name.oleg { left: 5%; bottom: 8%; }
     .founder-name.anna { left: 60%; bottom: 8%; }
-    .founders-content { padding: 58px 54px 54px 20px; display: flex; flex-direction: column; justify-content: space-between; z-index: 2; }
-    .founders-content h2 { margin: 0; font-size: clamp(42px,5vw,72px); line-height: .98; letter-spacing: -.06em; }
-    .founders-content > p { max-width: 520px; color: rgba(255,255,255,.65); font-size: 18px; }
-    .contact-form { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .founders-intro { grid-column: 2; padding: 58px 54px 0 20px; z-index: 2; }
+    .founders-intro h2 { margin: 0; font-size: clamp(42px,5vw,72px); line-height: .98; letter-spacing: -.06em; }
+    .founders-intro > p { max-width: 520px; color: rgba(255,255,255,.65); font-size: 18px; }
+    .contact-form { grid-column: 2; align-self: end; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 54px 54px 20px; z-index: 2; }
     .form-field { display: grid; gap: 7px; }
     .form-field.full { grid-column: 1 / -1; }
     .form-field label { color: rgba(255,255,255,.62); font-size: 12px; }
@@ -574,10 +574,11 @@
       .after-grid { grid-template-columns: 1fr; }
       .after-card { min-height: 260px; }
       .founders-shell { grid-template-columns: 1fr; }
-      .founders-media { width: 100%; max-width: 720px; min-height: 520px; margin: 0 auto; }
+      .founders-media { grid-row: auto; width: 100%; max-width: 720px; min-height: 520px; margin: 0 auto; }
       .founders-media img { left: 50%; width: 122%; height: auto; }
       .founder-name.anna { left: 58%; }
-      .founders-content { padding: 10px 42px 48px; }
+      .founders-intro { grid-column: 1; padding: 36px 42px 20px; }
+      .contact-form { grid-column: 1; padding: 0 42px 48px; }
     }
 
     @media (max-width: 760px) {
@@ -626,9 +627,13 @@
       .contact-form { grid-template-columns: 1fr; }
       .form-field, .form-field.full, .form-submit, .form-note, .form-status { grid-column: 1; }
       .founders-shell { border-radius: 32px; }
-      .founders-media { min-height: 390px; }
-      .founders-media img { width: 132%; height: auto; }
-      .founders-content { padding: 8px 24px 32px; }
+      .founders-intro { order: 1; padding: 32px 24px 22px; }
+      .founders-media { order: 2; width: auto; min-height: 340px; margin: 0 20px; overflow: hidden; border: 1px solid rgba(255,255,255,.12); border-radius: 26px; }
+      .founders-media::after { display: none; }
+      .founders-media img { left: 50%; bottom: 0; width: 118%; height: auto; }
+      .founder-name.oleg { left: 5%; bottom: 8%; }
+      .founder-name.anna { left: 60%; bottom: 8%; }
+      .contact-form { order: 3; padding: 26px 24px 32px; }
       .founder-name { font-size: 10px; }
       .final-shell { min-height: 500px; padding: 34px 26px; border-radius: 34px; align-content: end; }
       .final-shell::after { right: -170px; top: -80px; }
@@ -795,21 +800,19 @@
             <span class="founder-name oleg">Олег Родин</span>
             <span class="founder-name anna">Анна Капустина</span>
           </div>
-          <div class="founders-content">
-            <div>
-              <div class="section-label">Личное знакомство</div>
-              <h2>Обсудите проект с основателями Редстар</h2>
-              <p>Разберём задачу, зададим нужные вопросы и предложим следующий шаг — без типовой презентации и разговора по скрипту.</p>
-            </div>
-            <form class="contact-form" action="#" method="post" novalidate>
+          <div class="founders-intro">
+            <div class="section-label">Личное знакомство</div>
+            <h2>Обсудите проект с основателями Редстар</h2>
+            <p>Разберём задачу, зададим нужные вопросы и предложим следующий шаг — без типовой презентации и разговора по скрипту.</p>
+          </div>
+          <form class="contact-form" action="#" method="post" novalidate>
               <div class="form-field"><label for="name">Ваше имя</label><input id="name" name="name" type="text" autocomplete="name" placeholder="Как к вам обращаться" required></div>
               <div class="form-field"><label for="phone">Телефон или Telegram</label><input id="phone" name="phone" type="text" autocomplete="tel" placeholder="+7 900 000-00-00" required></div>
               <div class="form-field full"><label for="message">Коротко о задаче</label><textarea id="message" name="message" placeholder="Новый сайт, редизайн, интеграция..."></textarea></div>
               <button class="form-submit" type="submit">Записаться на консультацию →</button>
               <p class="form-note">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.</p>
               <p class="form-status" role="status" aria-live="polite"></p>
-            </form>
-          </div>
+          </form>
         </div>
       </div>
     </section>
