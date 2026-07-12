@@ -581,14 +581,22 @@
       .hero-copy { font-size: 18px; }
       .hero-actions { align-items: stretch; flex-direction: column; }
       .button-primary, .button-secondary { width: 100%; }
-      .hero-art { min-height: 350px; }
+      .hero {
+        background: linear-gradient(180deg, #fcf6f1 0 48%, #f5f0fa 76%, #fcf6f1 100%);
+      }
+      .hero-art { display: none; }
       .hero::before {
-        inset: 655px 8px auto;
-        height: 330px;
-        background-image: url("https://kcska18051-crypto.github.io/redstar-mvp-intensive/assets/hero-muted-loop-mobile-v7.webp");
-        background-size: contain;
-        background-position: center;
+        inset: 0;
+        height: auto;
+        background-image: url("https://kcska18051-crypto.github.io/redstar-mvp-intensive/assets/hero-mobile-integrated-v8.webp");
+        background-size: 100% auto;
+        background-position: center top;
         background-repeat: no-repeat;
+      }
+      .hero::after {
+        background:
+          linear-gradient(90deg, rgba(252,246,241,.18), transparent 64%),
+          linear-gradient(180deg, transparent 0 72%, #fcf6f1 96%);
       }
       .tag-one { right: 0; }
       .tag-two { left: 0; bottom: 6%; }
