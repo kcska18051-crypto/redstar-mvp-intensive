@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f7f5f2">
-  <meta name="description" content="Редстар — разработка и развитие сайтов на 1С-Битрикс: исследование, проектирование, дизайн, интеграции и поддержка после запуска.">
-  <title>Разработка сайтов на 1С-Битрикс — Редстар</title>
+  <meta name="description" content="Р РµРґСЃС‚Р°СЂ вЂ” СЂР°Р·СЂР°Р±РѕС‚РєР° Рё СЂР°Р·РІРёС‚РёРµ СЃР°Р№С‚РѕРІ РЅР° 1РЎ-Р‘РёС‚СЂРёРєСЃ: РёСЃСЃР»РµРґРѕРІР°РЅРёРµ, РїСЂРѕРµРєС‚РёСЂРѕРІР°РЅРёРµ, РґРёР·Р°Р№РЅ, РёРЅС‚РµРіСЂР°С†РёРё Рё РїРѕРґРґРµСЂР¶РєР° РїРѕСЃР»Рµ Р·Р°РїСѓСЃРєР°.">
+  <title>Р Р°Р·СЂР°Р±РѕС‚РєР° СЃР°Р№С‚РѕРІ РЅР° 1РЎ-Р‘РёС‚СЂРёРєСЃ вЂ” Р РµРґСЃС‚Р°СЂ</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600&display=swap" rel="stylesheet">
@@ -90,7 +90,7 @@
     .skip-link:focus { transform: translateY(0); }
 
     .container { width: var(--container); margin-inline: auto; }
-    .section { padding: 112px 0; position: relative; }
+    .section { padding: 112px 0; position: relative; isolation: isolate; }
     .section-label {
       display: inline-flex;
       align-items: center;
@@ -130,6 +130,45 @@
       backdrop-filter: blur(24px) saturate(135%);
       -webkit-backdrop-filter: blur(24px) saturate(135%);
     }
+
+    .refractive {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.78);
+      background:
+        linear-gradient(128deg, rgba(255,255,255,.62), rgba(255,255,255,.16) 48%, rgba(150,207,255,.18)),
+        radial-gradient(circle at 82% 18%, rgba(255,92,62,.24), transparent 34%);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.92),
+        inset 18px -22px 52px rgba(114,178,255,.08),
+        0 28px 70px rgba(70,54,70,.13);
+      backdrop-filter: blur(28px) saturate(155%);
+      -webkit-backdrop-filter: blur(28px) saturate(155%);
+    }
+    .refractive::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(118deg, transparent 12%, rgba(255,255,255,.62) 24%, transparent 36%),
+        radial-gradient(circle at 72% 78%, rgba(99,189,255,.18), transparent 30%);
+      mix-blend-mode: screen;
+      opacity: .72;
+    }
+    .refractive-orb {
+      position: absolute;
+      z-index: -1;
+      width: 300px;
+      aspect-ratio: 1;
+      border-radius: 48% 52% 63% 37% / 43% 39% 61% 57%;
+      pointer-events: none;
+      transform: rotate(var(--rotate, 12deg));
+      opacity: .86;
+    }
+    .orb-one { right: -90px; top: 18%; --rotate: 24deg; }
+    .orb-two { left: -130px; bottom: 4%; width: 360px; --rotate: -17deg; }
+    .orb-three { right: 2%; bottom: -70px; width: 230px; --rotate: 38deg; }
 
     .site-header {
       position: fixed;
@@ -257,6 +296,22 @@
       min-height: 560px;
       isolation: isolate;
     }
+    .hero-art::after {
+      content: "";
+      position: absolute;
+      z-index: 2;
+      width: 210px;
+      height: 120px;
+      right: 2%;
+      bottom: 5%;
+      border-radius: 56% 44% 48% 52% / 58% 42% 58% 42%;
+      border: 1px solid rgba(255,255,255,.82);
+      background: linear-gradient(135deg, rgba(255,255,255,.54), rgba(111,189,255,.15));
+      box-shadow: inset 8px 8px 22px rgba(255,255,255,.5), 0 18px 40px rgba(72,92,140,.15);
+      backdrop-filter: blur(19px) saturate(170%);
+      -webkit-backdrop-filter: blur(19px) saturate(170%);
+      transform: rotate(-13deg);
+    }
     .aura {
       position: absolute;
       inset: 8% -8% 3% -20%;
@@ -279,6 +334,23 @@
       overflow: visible;
       filter: drop-shadow(0 40px 50px rgba(62,68,96,.18));
       transform: translate3d(calc(var(--mx, 0) * -.55), calc(var(--my, 0) * -.55), 0) rotate(-3deg);
+      transition: transform .18s linear;
+    }
+    .liquid-asset {
+      position: absolute;
+      z-index: 1;
+      top: -5%;
+      right: -22%;
+      width: 148%;
+      max-width: none;
+      height: 112%;
+      object-fit: cover;
+      object-position: 72% center;
+      border-radius: 46% 54% 44% 56% / 49% 43% 57% 51%;
+      filter: saturate(1.08) contrast(1.02) drop-shadow(0 32px 42px rgba(95,74,105,.12));
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.45) 13%, #000 30%);
+      mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.45) 13%, #000 30%);
+      transform: translate3d(calc(var(--mx, 0) * -.45), calc(var(--my, 0) * -.45), 0);
       transition: transform .18s linear;
     }
     .glass-tag {
@@ -322,7 +394,7 @@
       text-transform: uppercase;
     }
     .marquee-track span { display: flex; align-items: center; gap: 34px; }
-    .marquee-track span::after { content: "✦"; color: var(--red); }
+    .marquee-track span::after { content: "вњ¦"; color: var(--red); }
     @keyframes marquee { to { transform: translateX(-50%); } }
 
     .services-layout {
@@ -567,6 +639,9 @@
       .hero-actions { align-items: stretch; flex-direction: column; }
       .button-primary, .button-secondary { width: 100%; }
       .hero-art { min-height: 350px; }
+      .liquid-asset { top: 0; right: -34%; width: 168%; height: 110%; object-position: 76% center; }
+      .hero-art::after { width: 140px; height: 82px; right: -4%; bottom: 1%; }
+      .refractive-orb { width: 190px; opacity: .62; }
       .tag-one { right: 0; }
       .tag-two { left: 0; bottom: 6%; }
       .hero-proof { grid-template-columns: 1fr 1fr; }
@@ -598,24 +673,24 @@
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#main">К содержанию</a>
+  <a class="skip-link" href="#main">Рљ СЃРѕРґРµСЂР¶Р°РЅРёСЋ</a>
 
   <header class="site-header" id="top">
     <div class="nav-shell glass">
-      <a class="brand" href="#top" aria-label="Редстар — на главную">
-        <img src="https://static.tildacdn.com/tild3137-3432-4663-b436-306563373835/Logo.svg" alt="Редстар" width="130" height="31">
-        <span class="brand-note">Веб-студия<br>на 1С-Битрикс</span>
+      <a class="brand" href="#top" aria-label="Р РµРґСЃС‚Р°СЂ вЂ” РЅР° РіР»Р°РІРЅСѓСЋ">
+        <img src="https://static.tildacdn.com/tild3137-3432-4663-b436-306563373835/Logo.svg" alt="Р РµРґСЃС‚Р°СЂ" width="130" height="31">
+        <span class="brand-note">Р’РµР±-СЃС‚СѓРґРёСЏ<br>РЅР° 1РЎ-Р‘РёС‚СЂРёРєСЃ</span>
       </a>
-      <nav aria-label="Основная навигация">
+      <nav aria-label="РћСЃРЅРѕРІРЅР°СЏ РЅР°РІРёРіР°С†РёСЏ">
         <ul class="nav-links">
-          <li><a href="#services">Услуги</a></li>
-          <li><a href="#approach">Подход</a></li>
-          <li><a href="#technology">Технологии</a></li>
-          <li><a href="#founders">О студии</a></li>
+          <li><a href="#services">РЈСЃР»СѓРіРё</a></li>
+          <li><a href="#approach">РџРѕРґС…РѕРґ</a></li>
+          <li><a href="#technology">РўРµС…РЅРѕР»РѕРіРёРё</a></li>
+          <li><a href="#founders">Рћ СЃС‚СѓРґРёРё</a></li>
         </ul>
       </nav>
       <a class="nav-cta" href="#founders">
-        <span>Обсудить проект</span>
+        <span>РћР±СЃСѓРґРёС‚СЊ РїСЂРѕРµРєС‚</span>
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
     </div>
@@ -625,142 +700,123 @@
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-content reveal">
-          <div class="hero-kicker"><span></span> Ярославль · работаем по всей России</div>
-          <h1 class="hero-title">Разработка сайтов на <span>1С‑Битрикс</span></h1>
-          <p class="hero-copy">Создаём и внедряем сайты для бизнеса: от первого исследования до запуска и дальнейшего развития.</p>
+          <div class="hero-kicker"><span></span> РЇСЂРѕСЃР»Р°РІР»СЊ В· СЂР°Р±РѕС‚Р°РµРј РїРѕ РІСЃРµР№ Р РѕСЃСЃРёРё</div>
+          <h1 class="hero-title">Р Р°Р·СЂР°Р±РѕС‚РєР° СЃР°Р№С‚РѕРІ РЅР° <span>1РЎвЂ‘Р‘РёС‚СЂРёРєСЃ</span></h1>
+          <p class="hero-copy">РЎРѕР·РґР°С‘Рј Рё РІРЅРµРґСЂСЏРµРј СЃР°Р№С‚С‹ РґР»СЏ Р±РёР·РЅРµСЃР°: РѕС‚ РїРµСЂРІРѕРіРѕ РёСЃСЃР»РµРґРѕРІР°РЅРёСЏ РґРѕ Р·Р°РїСѓСЃРєР° Рё РґР°Р»СЊРЅРµР№С€РµРіРѕ СЂР°Р·РІРёС‚РёСЏ.</p>
           <div class="hero-actions">
-            <a class="button-primary" href="#founders"><span class="spark">✦</span> Обсудить проект</a>
-            <a class="button-secondary" href="#approach">Как мы работаем <span>↓</span></a>
+            <a class="button-primary" href="#founders"><span class="spark">вњ¦</span> РћР±СЃСѓРґРёС‚СЊ РїСЂРѕРµРєС‚</a>
+            <a class="button-secondary" href="#approach">РљР°Рє РјС‹ СЂР°Р±РѕС‚Р°РµРј <span>в†“</span></a>
           </div>
         </div>
         <div class="hero-art" aria-hidden="true">
           <div class="aura"></div>
-          <svg class="liquid" viewBox="0 0 760 620" role="img">
-            <defs>
-              <linearGradient id="glassStroke" x1="120" y1="40" x2="650" y2="560" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#fff" stop-opacity=".98"/>
-                <stop offset=".22" stop-color="#ff7a63" stop-opacity=".78"/>
-                <stop offset=".5" stop-color="#7dc7ff" stop-opacity=".86"/>
-                <stop offset=".73" stop-color="#d8bdff" stop-opacity=".74"/>
-                <stop offset="1" stop-color="#fff" stop-opacity=".94"/>
-              </linearGradient>
-              <linearGradient id="glassFill" x1="160" y1="80" x2="630" y2="550" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#fff" stop-opacity=".52"/>
-                <stop offset=".38" stop-color="#ff5938" stop-opacity=".19"/>
-                <stop offset=".7" stop-color="#4ea8ff" stop-opacity=".18"/>
-                <stop offset="1" stop-color="#fff" stop-opacity=".38"/>
-              </linearGradient>
-              <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
-                <feGaussianBlur stdDeviation="9" result="blur"/>
-                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-              </filter>
-            </defs>
-            <path d="M89 337C55 205 135 82 271 83c117 1 161 95 245 108 86 13 139-55 174-1 41 62-44 146-118 157-82 12-133-56-226-42-105 15-151 148-63 205 98 63 227-32 315-7 50 14 57 73 7 93-86 35-225-53-322-18-75 27-104 83-158 48-73-47 33-171-36-289Z" fill="#ffffff" fill-opacity=".18" stroke="url(#glassStroke)" stroke-width="16"/>
-            <path d="M102 334C73 219 146 109 272 112c108 3 155 91 241 103 88 12 132-45 154-4 23 43-47 105-110 113-84 11-135-49-225-27-98 24-124 144-42 185 92 46 200-42 299-8" fill="none" stroke="white" stroke-opacity=".7" stroke-width="5"/>
-          </svg>
-          <div class="glass-tag glass tag-one">Полный цикл</div>
-          <div class="glass-tag glass tag-two">Дизайн · код · развитие</div>
+          <img class="liquid-asset refractive-hero" src="https://kcska18051-crypto.github.io/redstar-mvp-intensive/assets/hero-liquid-glass-v2.png" alt="" width="1536" height="864" fetchpriority="high">
+          <div class="glass-tag glass tag-one">РџРѕР»РЅС‹Р№ С†РёРєР»</div>
+          <div class="glass-tag glass tag-two">Р”РёР·Р°Р№РЅ В· РєРѕРґ В· СЂР°Р·РІРёС‚РёРµ</div>
         </div>
         <div class="hero-proof reveal">
-          <div class="proof-item"><div class="proof-value">16+</div><div class="proof-label">лет в веб-разработке</div></div>
-          <div class="proof-item"><div class="proof-value">800+</div><div class="proof-label">реализованных проектов</div></div>
-          <div class="proof-item"><div class="proof-value">1С</div><div class="proof-label">сертифицированный партнёр</div></div>
-          <div class="proof-item"><div class="proof-value">РФ</div><div class="proof-label">аккредитованная ИТ-компания</div></div>
+          <div class="proof-item"><div class="proof-value">16+</div><div class="proof-label">Р»РµС‚ РІ РІРµР±-СЂР°Р·СЂР°Р±РѕС‚РєРµ</div></div>
+          <div class="proof-item"><div class="proof-value">800+</div><div class="proof-label">СЂРµР°Р»РёР·РѕРІР°РЅРЅС‹С… РїСЂРѕРµРєС‚РѕРІ</div></div>
+          <div class="proof-item"><div class="proof-value">1РЎ</div><div class="proof-label">СЃРµСЂС‚РёС„РёС†РёСЂРѕРІР°РЅРЅС‹Р№ РїР°СЂС‚РЅС‘СЂ</div></div>
+          <div class="proof-item"><div class="proof-value">Р Р¤</div><div class="proof-label">Р°РєРєСЂРµРґРёС‚РѕРІР°РЅРЅР°СЏ РРў-РєРѕРјРїР°РЅРёСЏ</div></div>
         </div>
       </div>
     </section>
 
     <div class="marquee" aria-hidden="true">
       <div class="marquee-track">
-        <span>Исследование</span><span>Прототипирование</span><span>Дизайн</span><span>1С-Битрикс</span><span>Интеграции</span><span>Поддержка</span><span>SEO</span><span>Реклама</span>
-        <span>Исследование</span><span>Прототипирование</span><span>Дизайн</span><span>1С-Битрикс</span><span>Интеграции</span><span>Поддержка</span><span>SEO</span><span>Реклама</span>
+        <span>РСЃСЃР»РµРґРѕРІР°РЅРёРµ</span><span>РџСЂРѕС‚РѕС‚РёРїРёСЂРѕРІР°РЅРёРµ</span><span>Р”РёР·Р°Р№РЅ</span><span>1РЎ-Р‘РёС‚СЂРёРєСЃ</span><span>РРЅС‚РµРіСЂР°С†РёРё</span><span>РџРѕРґРґРµСЂР¶РєР°</span><span>SEO</span><span>Р РµРєР»Р°РјР°</span>
+        <span>РСЃСЃР»РµРґРѕРІР°РЅРёРµ</span><span>РџСЂРѕС‚РѕС‚РёРїРёСЂРѕРІР°РЅРёРµ</span><span>Р”РёР·Р°Р№РЅ</span><span>1РЎ-Р‘РёС‚СЂРёРєСЃ</span><span>РРЅС‚РµРіСЂР°С†РёРё</span><span>РџРѕРґРґРµСЂР¶РєР°</span><span>SEO</span><span>Р РµРєР»Р°РјР°</span>
       </div>
     </div>
 
     <section class="section" id="services">
+      <div class="refractive-orb refractive orb-one" aria-hidden="true"></div>
       <div class="container">
-        <div class="section-label reveal">Что создаём</div>
-        <h2 class="section-title reveal">Не просто страницы.<br>Цифровые решения.</h2>
-        <p class="section-lead reveal">Для среднего бизнеса, промышленности, застройщиков, учреждений культуры и организаций со сложными задачами.</p>
+        <div class="section-label reveal">Р§С‚Рѕ СЃРѕР·РґР°С‘Рј</div>
+        <h2 class="section-title reveal">РќРµ РїСЂРѕСЃС‚Рѕ СЃС‚СЂР°РЅРёС†С‹<br>Р¦РёС„СЂРѕРІС‹Рµ СЂРµС€РµРЅРёСЏ</h2>
+        <p class="section-lead reveal">Р”Р»СЏ СЃСЂРµРґРЅРµРіРѕ Р±РёР·РЅРµСЃР°, РїСЂРѕРјС‹С€Р»РµРЅРЅРѕСЃС‚Рё, Р·Р°СЃС‚СЂРѕР№С‰РёРєРѕРІ, СѓС‡СЂРµР¶РґРµРЅРёР№ РєСѓР»СЊС‚СѓСЂС‹ Рё РѕСЂРіР°РЅРёР·Р°С†РёР№ СЃРѕ СЃР»РѕР¶РЅС‹РјРё Р·Р°РґР°С‡Р°РјРё.</p>
         <div class="services-layout">
-          <article class="services-note glass reveal">
-            <strong>Сайт работает на бизнес, когда понимает его устройство.</strong>
-            <p>Разбираемся в продукте и процессах, чтобы подобрать формат, архитектуру и функции под реальную задачу.</p>
+          <article class="services-note glass refractive refractive-card reveal">
+            <strong>РЎР°Р№С‚ СЂР°Р±РѕС‚Р°РµС‚ РЅР° Р±РёР·РЅРµСЃ, РєРѕРіРґР° РїРѕРЅРёРјР°РµС‚ РµРіРѕ СѓСЃС‚СЂРѕР№СЃС‚РІРѕ.</strong>
+            <p>Р Р°Р·Р±РёСЂР°РµРјСЃСЏ РІ РїСЂРѕРґСѓРєС‚Рµ Рё РїСЂРѕС†РµСЃСЃР°С…, С‡С‚РѕР±С‹ РїРѕРґРѕР±СЂР°С‚СЊ С„РѕСЂРјР°С‚, Р°СЂС…РёС‚РµРєС‚СѓСЂСѓ Рё С„СѓРЅРєС†РёРё РїРѕРґ СЂРµР°Р»СЊРЅСѓСЋ Р·Р°РґР°С‡Сѓ.</p>
           </article>
           <div class="service-list reveal">
-            <div class="service-row"><span class="service-index">01</span><span class="service-name">Корпоративные сайты</span><span class="service-icon">↗</span></div>
-            <div class="service-row"><span class="service-index">02</span><span class="service-name">Каталоги и порталы</span><span class="service-icon">↗</span></div>
-            <div class="service-row"><span class="service-index">03</span><span class="service-name">Проекты застройщиков</span><span class="service-icon">↗</span></div>
-            <div class="service-row"><span class="service-index">04</span><span class="service-name">Личные кабинеты</span><span class="service-icon">↗</span></div>
-            <div class="service-row"><span class="service-index">05</span><span class="service-name">Интеграции и сервисы</span><span class="service-icon">↗</span></div>
+            <div class="service-row"><span class="service-index">01</span><span class="service-name">РљРѕСЂРїРѕСЂР°С‚РёРІРЅС‹Рµ СЃР°Р№С‚С‹</span><span class="service-icon">в†—</span></div>
+            <div class="service-row"><span class="service-index">02</span><span class="service-name">РљР°С‚Р°Р»РѕРіРё Рё РїРѕСЂС‚Р°Р»С‹</span><span class="service-icon">в†—</span></div>
+            <div class="service-row"><span class="service-index">03</span><span class="service-name">РџСЂРѕРµРєС‚С‹ Р·Р°СЃС‚СЂРѕР№С‰РёРєРѕРІ</span><span class="service-icon">в†—</span></div>
+            <div class="service-row"><span class="service-index">04</span><span class="service-name">Р›РёС‡РЅС‹Рµ РєР°Р±РёРЅРµС‚С‹</span><span class="service-icon">в†—</span></div>
+            <div class="service-row"><span class="service-index">05</span><span class="service-name">РРЅС‚РµРіСЂР°С†РёРё Рё СЃРµСЂРІРёСЃС‹</span><span class="service-icon">в†—</span></div>
           </div>
         </div>
       </div>
     </section>
 
     <section class="section" id="approach">
+      <div class="refractive-orb refractive orb-two" aria-hidden="true"></div>
       <div class="container">
-        <div class="section-label reveal">Полный цикл</div>
-        <h2 class="section-title reveal">От исследования<br>до развития.</h2>
+        <div class="section-label reveal">РџРѕР»РЅС‹Р№ С†РёРєР»</div>
+        <h2 class="section-title reveal">РћС‚ РёСЃСЃР»РµРґРѕРІР°РЅРёСЏ<br>РґРѕ СЂР°Р·РІРёС‚РёСЏ</h2>
         <div class="process-shell glass reveal">
-          <article class="process-step"><span class="step-no">01</span><h3 class="step-title">Исследуем</h3><p class="step-copy">Погружаемся в бизнес, изучаем аудиторию, рынок и конкурентов. Определяем задачи, позиционирование и возможности.</p></article>
-          <article class="process-step"><span class="step-no">02</span><h3 class="step-title">Проектируем</h3><p class="step-copy">Формируем структуру, сценарии, прототипы и функциональные требования будущего сайта.</p></article>
-          <article class="process-step"><span class="step-no">03</span><h3 class="step-title">Создаём дизайн</h3><p class="step-copy">Разрабатываем визуальную концепцию, которая поддерживает бренд и помогает отличаться от рынка.</p></article>
-          <article class="process-step"><span class="step-no">04</span><h3 class="step-title">Внедряем</h3><p class="step-copy">Верстаем и программируем на 1С‑Битрикс, настраиваем функции, интеграции и обмен данными.</p></article>
-          <article class="process-step"><span class="step-no">05</span><h3 class="step-title">Запускаем и развиваем</h3><p class="step-copy">Тестируем, разворачиваем проект и подключаем поддержку, SEO и рекламу после релиза.</p></article>
+          <article class="process-step"><span class="step-no">01</span><h3 class="step-title">РСЃСЃР»РµРґСѓРµРј</h3><p class="step-copy">РџРѕРіСЂСѓР¶Р°РµРјСЃСЏ РІ Р±РёР·РЅРµСЃ, РёР·СѓС‡Р°РµРј Р°СѓРґРёС‚РѕСЂРёСЋ, СЂС‹РЅРѕРє Рё РєРѕРЅРєСѓСЂРµРЅС‚РѕРІ. РћРїСЂРµРґРµР»СЏРµРј Р·Р°РґР°С‡Рё, РїРѕР·РёС†РёРѕРЅРёСЂРѕРІР°РЅРёРµ Рё РІРѕР·РјРѕР¶РЅРѕСЃС‚Рё.</p></article>
+          <article class="process-step"><span class="step-no">02</span><h3 class="step-title">РџСЂРѕРµРєС‚РёСЂСѓРµРј</h3><p class="step-copy">Р¤РѕСЂРјРёСЂСѓРµРј СЃС‚СЂСѓРєС‚СѓСЂСѓ, СЃС†РµРЅР°СЂРёРё, РїСЂРѕС‚РѕС‚РёРїС‹ Рё С„СѓРЅРєС†РёРѕРЅР°Р»СЊРЅС‹Рµ С‚СЂРµР±РѕРІР°РЅРёСЏ Р±СѓРґСѓС‰РµРіРѕ СЃР°Р№С‚Р°.</p></article>
+          <article class="process-step"><span class="step-no">03</span><h3 class="step-title">РЎРѕР·РґР°С‘Рј РґРёР·Р°Р№РЅ</h3><p class="step-copy">Р Р°Р·СЂР°Р±Р°С‚С‹РІР°РµРј РІРёР·СѓР°Р»СЊРЅСѓСЋ РєРѕРЅС†РµРїС†РёСЋ, РєРѕС‚РѕСЂР°СЏ РїРѕРґРґРµСЂР¶РёРІР°РµС‚ Р±СЂРµРЅРґ Рё РїРѕРјРѕРіР°РµС‚ РѕС‚Р»РёС‡Р°С‚СЊСЃСЏ РѕС‚ СЂС‹РЅРєР°.</p></article>
+          <article class="process-step"><span class="step-no">04</span><h3 class="step-title">Р’РЅРµРґСЂСЏРµРј</h3><p class="step-copy">Р’РµСЂСЃС‚Р°РµРј Рё РїСЂРѕРіСЂР°РјРјРёСЂСѓРµРј РЅР° 1РЎвЂ‘Р‘РёС‚СЂРёРєСЃ, РЅР°СЃС‚СЂР°РёРІР°РµРј С„СѓРЅРєС†РёРё, РёРЅС‚РµРіСЂР°С†РёРё Рё РѕР±РјРµРЅ РґР°РЅРЅС‹РјРё.</p></article>
+          <article class="process-step"><span class="step-no">05</span><h3 class="step-title">Р—Р°РїСѓСЃРєР°РµРј Рё СЂР°Р·РІРёРІР°РµРј</h3><p class="step-copy">РўРµСЃС‚РёСЂСѓРµРј, СЂР°Р·РІРѕСЂР°С‡РёРІР°РµРј РїСЂРѕРµРєС‚ Рё РїРѕРґРєР»СЋС‡Р°РµРј РїРѕРґРґРµСЂР¶РєСѓ, SEO Рё СЂРµРєР»Р°РјСѓ РїРѕСЃР»Рµ СЂРµР»РёР·Р°.</p></article>
         </div>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <div class="section-label reveal">Формат</div>
-        <h2 class="section-title reveal">Решение под задачу,<br>а не наоборот.</h2>
+        <div class="section-label reveal">Р¤РѕСЂРјР°С‚</div>
+        <h2 class="section-title reveal">Р РµС€РµРЅРёРµ РїРѕРґ Р·Р°РґР°С‡Сѓ,<br>Р° РЅРµ РЅР°РѕР±РѕСЂРѕС‚</h2>
         <div class="format-grid">
-          <article class="format-panel dark reveal"><div class="format-glow"></div><h3>Уникальный<br>дизайн</h3><p>Для компаний, которым важно выразить позиционирование, представить сложный продукт и создать индивидуальный опыт.</p><ul><li>Архитектура с нуля</li><li>Собственная визуальная система</li><li>Нестандартные сценарии</li></ul></article>
-          <article class="format-panel light glass reveal"><div class="format-glow"></div><h3>Готовая<br>основа</h3><p>Для проектов, где важны быстрый запуск и рациональный бюджет без компромисса в содержании и логике.</p><ul><li>Подбор подходящего решения</li><li>Адаптация под бренд</li><li>Настройка функций</li></ul></article>
+          <article class="format-panel dark reveal"><div class="format-glow"></div><h3>РЈРЅРёРєР°Р»СЊРЅС‹Р№<br>РґРёР·Р°Р№РЅ</h3><p>Р”Р»СЏ РєРѕРјРїР°РЅРёР№, РєРѕС‚РѕСЂС‹Рј РІР°Р¶РЅРѕ РІС‹СЂР°Р·РёС‚СЊ РїРѕР·РёС†РёРѕРЅРёСЂРѕРІР°РЅРёРµ, РїСЂРµРґСЃС‚Р°РІРёС‚СЊ СЃР»РѕР¶РЅС‹Р№ РїСЂРѕРґСѓРєС‚ Рё СЃРѕР·РґР°С‚СЊ РёРЅРґРёРІРёРґСѓР°Р»СЊРЅС‹Р№ РѕРїС‹С‚.</p><ul><li>РђСЂС…РёС‚РµРєС‚СѓСЂР° СЃ РЅСѓР»СЏ</li><li>РЎРѕР±СЃС‚РІРµРЅРЅР°СЏ РІРёР·СѓР°Р»СЊРЅР°СЏ СЃРёСЃС‚РµРјР°</li><li>РќРµСЃС‚Р°РЅРґР°СЂС‚РЅС‹Рµ СЃС†РµРЅР°СЂРёРё</li></ul></article>
+          <article class="format-panel light glass reveal"><div class="format-glow"></div><h3>Р“РѕС‚РѕРІР°СЏ<br>РѕСЃРЅРѕРІР°</h3><p>Р”Р»СЏ РїСЂРѕРµРєС‚РѕРІ, РіРґРµ РІР°Р¶РЅС‹ Р±С‹СЃС‚СЂС‹Р№ Р·Р°РїСѓСЃРє Рё СЂР°С†РёРѕРЅР°Р»СЊРЅС‹Р№ Р±СЋРґР¶РµС‚ Р±РµР· РєРѕРјРїСЂРѕРјРёСЃСЃР° РІ СЃРѕРґРµСЂР¶Р°РЅРёРё Рё Р»РѕРіРёРєРµ.</p><ul><li>РџРѕРґР±РѕСЂ РїРѕРґС…РѕРґСЏС‰РµРіРѕ СЂРµС€РµРЅРёСЏ</li><li>РђРґР°РїС‚Р°С†РёСЏ РїРѕРґ Р±СЂРµРЅРґ</li><li>РќР°СЃС‚СЂРѕР№РєР° С„СѓРЅРєС†РёР№</li></ul></article>
         </div>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <div class="section-label reveal">Аналитика</div>
-        <h2 class="section-title reveal">Сначала понимаем.<br>Затем создаём.</h2>
+        <div class="section-label reveal">РђРЅР°Р»РёС‚РёРєР°</div>
+        <h2 class="section-title reveal">РЎРЅР°С‡Р°Р»Р° РїРѕРЅРёРјР°РµРј<br>Р—Р°С‚РµРј СЃРѕР·РґР°С‘Рј</h2>
         <div class="analysis-visual">
-          <div class="analysis-board glass reveal">
-            <p>До первого макета собираем картину проекта и фиксируем решения в понятной форме.</p>
+          <div class="analysis-board glass refractive refractive-panel reveal">
+            <p>Р”Рѕ РїРµСЂРІРѕРіРѕ РјР°РєРµС‚Р° СЃРѕР±РёСЂР°РµРј РєР°СЂС‚РёРЅСѓ РїСЂРѕРµРєС‚Р° Рё С„РёРєСЃРёСЂСѓРµРј СЂРµС€РµРЅРёСЏ РІ РїРѕРЅСЏС‚РЅРѕР№ С„РѕСЂРјРµ.</p>
             <div class="analysis-map">
-              <div class="analysis-chip"><b>Бизнес</b><span>Цели, продукты, ограничения и точки роста</span></div>
-              <div class="analysis-chip"><b>Аудитория</b><span>Прямые, косвенные и потенциальные сегменты</span></div>
-              <div class="analysis-chip"><b>Конкуренты</b><span>Позиционирование, структура и визуальный язык</span></div>
-              <div class="analysis-chip"><b>Семантика</b><span>Спрос, намерения и будущие разделы сайта</span></div>
+              <div class="analysis-chip"><b>Р‘РёР·РЅРµСЃ</b><span>Р¦РµР»Рё, РїСЂРѕРґСѓРєС‚С‹, РѕРіСЂР°РЅРёС‡РµРЅРёСЏ Рё С‚РѕС‡РєРё СЂРѕСЃС‚Р°</span></div>
+              <div class="analysis-chip"><b>РђСѓРґРёС‚РѕСЂРёСЏ</b><span>РџСЂСЏРјС‹Рµ, РєРѕСЃРІРµРЅРЅС‹Рµ Рё РїРѕС‚РµРЅС†РёР°Р»СЊРЅС‹Рµ СЃРµРіРјРµРЅС‚С‹</span></div>
+              <div class="analysis-chip"><b>РљРѕРЅРєСѓСЂРµРЅС‚С‹</b><span>РџРѕР·РёС†РёРѕРЅРёСЂРѕРІР°РЅРёРµ, СЃС‚СЂСѓРєС‚СѓСЂР° Рё РІРёР·СѓР°Р»СЊРЅС‹Р№ СЏР·С‹Рє</span></div>
+              <div class="analysis-chip"><b>РЎРµРјР°РЅС‚РёРєР°</b><span>РЎРїСЂРѕСЃ, РЅР°РјРµСЂРµРЅРёСЏ Рё Р±СѓРґСѓС‰РёРµ СЂР°Р·РґРµР»С‹ СЃР°Р№С‚Р°</span></div>
             </div>
           </div>
-          <blockquote class="analysis-quote reveal"><p>Каждое решение получает своё «почему».</p><small>Выводы собираем в наглядный аналитический PDF и согласовываем до проектирования.</small></blockquote>
+          <blockquote class="analysis-quote reveal"><p>РљР°Р¶РґРѕРµ СЂРµС€РµРЅРёРµ РїРѕР»СѓС‡Р°РµС‚ СЃРІРѕС‘ В«РїРѕС‡РµРјСѓВ».</p><small>Р’С‹РІРѕРґС‹ СЃРѕР±РёСЂР°РµРј РІ РЅР°РіР»СЏРґРЅС‹Р№ Р°РЅР°Р»РёС‚РёС‡РµСЃРєРёР№ PDF Рё СЃРѕРіР»Р°СЃРѕРІС‹РІР°РµРј РґРѕ РїСЂРѕРµРєС‚РёСЂРѕРІР°РЅРёСЏ.</small></blockquote>
         </div>
       </div>
     </section>
 
     <section class="section" id="technology">
+      <div class="refractive-orb refractive orb-three" aria-hidden="true"></div>
       <div class="container">
-        <div class="section-label reveal">Технологии</div>
-        <h2 class="section-title reveal">Больше, чем<br>стандартный сайт.</h2>
-        <p class="section-lead reveal">Собираем архитектуру под процессы конкретной компании и связываем сайт с её цифровой системой.</p>
+        <div class="section-label reveal">РўРµС…РЅРѕР»РѕРіРёРё</div>
+        <h2 class="section-title reveal">Р‘РѕР»СЊС€Рµ, С‡РµРј<br>СЃС‚Р°РЅРґР°СЂС‚РЅС‹Р№ СЃР°Р№С‚</h2>
+        <p class="section-lead reveal">РЎРѕР±РёСЂР°РµРј Р°СЂС…РёС‚РµРєС‚СѓСЂСѓ РїРѕРґ РїСЂРѕС†РµСЃСЃС‹ РєРѕРЅРєСЂРµС‚РЅРѕР№ РєРѕРјРїР°РЅРёРё Рё СЃРІСЏР·С‹РІР°РµРј СЃР°Р№С‚ СЃ РµС‘ С†РёС„СЂРѕРІРѕР№ СЃРёСЃС‚РµРјРѕР№.</p>
         <div class="tech-cloud reveal">
-          <span class="tech-pill">Интеграция с 1С</span><span class="tech-pill">CRM и внешние API</span><span class="tech-pill">Личные кабинеты</span><span class="tech-pill">Синхронизация каталогов</span><span class="tech-pill">Парсеры данных</span><span class="tech-pill">Платёжные системы</span><span class="tech-pill">Сложные фильтры</span><span class="tech-pill">Маркетплейсы</span><span class="tech-pill">Нестандартные сценарии</span><span class="tech-pill">Высокая нагрузка</span>
+          <span class="tech-pill">РРЅС‚РµРіСЂР°С†РёСЏ СЃ 1РЎ</span><span class="tech-pill">CRM Рё РІРЅРµС€РЅРёРµ API</span><span class="tech-pill">Р›РёС‡РЅС‹Рµ РєР°Р±РёРЅРµС‚С‹</span><span class="tech-pill">РЎРёРЅС…СЂРѕРЅРёР·Р°С†РёСЏ РєР°С‚Р°Р»РѕРіРѕРІ</span><span class="tech-pill">РџР°СЂСЃРµСЂС‹ РґР°РЅРЅС‹С…</span><span class="tech-pill">РџР»Р°С‚С‘Р¶РЅС‹Рµ СЃРёСЃС‚РµРјС‹</span><span class="tech-pill">РЎР»РѕР¶РЅС‹Рµ С„РёР»СЊС‚СЂС‹</span><span class="tech-pill">РњР°СЂРєРµС‚РїР»РµР№СЃС‹</span><span class="tech-pill">РќРµСЃС‚Р°РЅРґР°СЂС‚РЅС‹Рµ СЃС†РµРЅР°СЂРёРё</span><span class="tech-pill">Р’С‹СЃРѕРєР°СЏ РЅР°РіСЂСѓР·РєР°</span>
         </div>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <div class="section-label reveal">После релиза</div>
-        <h2 class="section-title reveal">Остаёмся<br>с проектом.</h2>
+        <div class="section-label reveal">РџРѕСЃР»Рµ СЂРµР»РёР·Р°</div>
+        <h2 class="section-title reveal">РћСЃС‚Р°С‘РјСЃСЏ<br>СЃ РїСЂРѕРµРєС‚РѕРј</h2>
         <div class="after-grid">
-          <article class="after-card reveal"><h3>Техническая<br>поддержка</h3><p>Стабильная работа, обновления, исправления и новые функции.</p></article>
-          <article class="after-card glass reveal"><h3>SEO‑<br>продвижение</h3><p>Развитие структуры и контента для роста целевого поискового трафика.</p></article>
-          <article class="after-card reveal"><h3>Контекстная<br>реклама</h3><p>Привлечение аудитории и проверка рекламных гипотез на реальных данных.</p></article>
+          <article class="after-card reveal"><h3>РўРµС…РЅРёС‡РµСЃРєР°СЏ<br>РїРѕРґРґРµСЂР¶РєР°</h3><p>РЎС‚Р°Р±РёР»СЊРЅР°СЏ СЂР°Р±РѕС‚Р°, РѕР±РЅРѕРІР»РµРЅРёСЏ, РёСЃРїСЂР°РІР»РµРЅРёСЏ Рё РЅРѕРІС‹Рµ С„СѓРЅРєС†РёРё.</p></article>
+          <article class="after-card glass reveal"><h3>SEOвЂ‘<br>РїСЂРѕРґРІРёР¶РµРЅРёРµ</h3><p>Р Р°Р·РІРёС‚РёРµ СЃС‚СЂСѓРєС‚СѓСЂС‹ Рё РєРѕРЅС‚РµРЅС‚Р° РґР»СЏ СЂРѕСЃС‚Р° С†РµР»РµРІРѕРіРѕ РїРѕРёСЃРєРѕРІРѕРіРѕ С‚СЂР°С„РёРєР°.</p></article>
+          <article class="after-card reveal"><h3>РљРѕРЅС‚РµРєСЃС‚РЅР°СЏ<br>СЂРµРєР»Р°РјР°</h3><p>РџСЂРёРІР»РµС‡РµРЅРёРµ Р°СѓРґРёС‚РѕСЂРёРё Рё РїСЂРѕРІРµСЂРєР° СЂРµРєР»Р°РјРЅС‹С… РіРёРїРѕС‚РµР· РЅР° СЂРµР°Р»СЊРЅС‹С… РґР°РЅРЅС‹С….</p></article>
         </div>
       </div>
     </section>
@@ -769,22 +825,22 @@
       <div class="container">
         <div class="founders-shell reveal">
           <div class="founders-media">
-            <img src="https://optim.tildacdn.com/tild3237-6565-4362-b166-656535363938/-/format/webp/Mask_group.png.webp" alt="Основатели Редстар Олег Родин и Анна Капустина" width="1714" height="840" loading="eager">
-            <span class="founder-name oleg">Олег Родин</span>
-            <span class="founder-name anna">Анна Капустина</span>
+            <img src="https://optim.tildacdn.com/tild3237-6565-4362-b166-656535363938/-/format/webp/Mask_group.png.webp" alt="РћСЃРЅРѕРІР°С‚РµР»Рё Р РµРґСЃС‚Р°СЂ РћР»РµРі Р РѕРґРёРЅ Рё РђРЅРЅР° РљР°РїСѓСЃС‚РёРЅР°" width="1714" height="840" loading="eager">
+            <span class="founder-name oleg">РћР»РµРі Р РѕРґРёРЅ</span>
+            <span class="founder-name anna">РђРЅРЅР° РљР°РїСѓСЃС‚РёРЅР°</span>
           </div>
           <div class="founders-content">
             <div>
-              <div class="section-label">Личное знакомство</div>
-              <h2>Обсудите проект с основателями Редстар</h2>
-              <p>Разберём задачу, зададим нужные вопросы и предложим следующий шаг — без типовой презентации и разговора по скрипту.</p>
+              <div class="section-label">Р›РёС‡РЅРѕРµ Р·РЅР°РєРѕРјСЃС‚РІРѕ</div>
+              <h2>РћР±СЃСѓРґРёС‚Рµ РїСЂРѕРµРєС‚ СЃ РѕСЃРЅРѕРІР°С‚РµР»СЏРјРё Р РµРґСЃС‚Р°СЂ</h2>
+              <p>Р Р°Р·Р±РµСЂС‘Рј Р·Р°РґР°С‡Сѓ, Р·Р°РґР°РґРёРј РЅСѓР¶РЅС‹Рµ РІРѕРїСЂРѕСЃС‹ Рё РїСЂРµРґР»РѕР¶РёРј СЃР»РµРґСѓСЋС‰РёР№ С€Р°Рі вЂ” Р±РµР· С‚РёРїРѕРІРѕР№ РїСЂРµР·РµРЅС‚Р°С†РёРё Рё СЂР°Р·РіРѕРІРѕСЂР° РїРѕ СЃРєСЂРёРїС‚Сѓ.</p>
             </div>
             <form class="contact-form" action="#" method="post" novalidate>
-              <div class="form-field"><label for="name">Ваше имя</label><input id="name" name="name" type="text" autocomplete="name" placeholder="Как к вам обращаться" required></div>
-              <div class="form-field"><label for="phone">Телефон или Telegram</label><input id="phone" name="phone" type="text" autocomplete="tel" placeholder="+7 900 000-00-00" required></div>
-              <div class="form-field full"><label for="message">Коротко о задаче</label><textarea id="message" name="message" placeholder="Новый сайт, редизайн, интеграция..."></textarea></div>
-              <button class="form-submit" type="submit">Записаться на консультацию →</button>
-              <p class="form-note">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.</p>
+              <div class="form-field"><label for="name">Р’Р°С€Рµ РёРјСЏ</label><input id="name" name="name" type="text" autocomplete="name" placeholder="РљР°Рє Рє РІР°Рј РѕР±СЂР°С‰Р°С‚СЊСЃСЏ" required></div>
+              <div class="form-field"><label for="phone">РўРµР»РµС„РѕРЅ РёР»Рё Telegram</label><input id="phone" name="phone" type="text" autocomplete="tel" placeholder="+7 900 000-00-00" required></div>
+              <div class="form-field full"><label for="message">РљРѕСЂРѕС‚РєРѕ Рѕ Р·Р°РґР°С‡Рµ</label><textarea id="message" name="message" placeholder="РќРѕРІС‹Р№ СЃР°Р№С‚, СЂРµРґРёР·Р°Р№РЅ, РёРЅС‚РµРіСЂР°С†РёСЏ..."></textarea></div>
+              <button class="form-submit" type="submit">Р—Р°РїРёСЃР°С‚СЊСЃСЏ РЅР° РєРѕРЅСЃСѓР»СЊС‚Р°С†РёСЋ в†’</button>
+              <p class="form-note">РќР°Р¶РёРјР°СЏ РєРЅРѕРїРєСѓ, РІС‹ СЃРѕРіР»Р°С€Р°РµС‚РµСЃСЊ СЃ РѕР±СЂР°Р±РѕС‚РєРѕР№ РїРµСЂСЃРѕРЅР°Р»СЊРЅС‹С… РґР°РЅРЅС‹С….</p>
               <p class="form-status" role="status" aria-live="polite"></p>
             </form>
           </div>
@@ -794,13 +850,13 @@
 
     <section class="section">
       <div class="container">
-        <div class="section-label reveal">Вопросы</div>
-        <h2 class="section-title reveal">До начала<br>разговора.</h2>
+        <div class="section-label reveal">Р’РѕРїСЂРѕСЃС‹</div>
+        <h2 class="section-title reveal">Р”Рѕ РЅР°С‡Р°Р»Р°<br>СЂР°Р·РіРѕРІРѕСЂР°</h2>
         <div class="faq-list reveal">
-          <details><summary>Вы работаете только с уникальным дизайном?</summary><p>Нет. Создаём уникальные проекты и адаптируем готовые решения. Формат выбираем после знакомства с задачей, сроками и бюджетом.</p></details>
-          <details><summary>Можно доработать существующий сайт?</summary><p>Да. Изучим текущую систему и определим, рациональнее ли развивать её, существенно переработать или создать новое решение.</p></details>
-          <details><summary>Вы выполняете интеграцию с 1С?</summary><p>Да. Проектируем обмен с учётом структуры данных, сценариев обновления и внутренних процессов компании.</p></details>
-          <details><summary>Что происходит после запуска?</summary><p>Проект можно передать в техническую поддержку, SEO и контекстную рекламу. Команды студии продолжат работу с накопленным контекстом.</p></details>
+          <details><summary>Р’С‹ СЂР°Р±РѕС‚Р°РµС‚Рµ С‚РѕР»СЊРєРѕ СЃ СѓРЅРёРєР°Р»СЊРЅС‹Рј РґРёР·Р°Р№РЅРѕРј?</summary><p>РќРµС‚. РЎРѕР·РґР°С‘Рј СѓРЅРёРєР°Р»СЊРЅС‹Рµ РїСЂРѕРµРєС‚С‹ Рё Р°РґР°РїС‚РёСЂСѓРµРј РіРѕС‚РѕРІС‹Рµ СЂРµС€РµРЅРёСЏ. Р¤РѕСЂРјР°С‚ РІС‹Р±РёСЂР°РµРј РїРѕСЃР»Рµ Р·РЅР°РєРѕРјСЃС‚РІР° СЃ Р·Р°РґР°С‡РµР№, СЃСЂРѕРєР°РјРё Рё Р±СЋРґР¶РµС‚РѕРј.</p></details>
+          <details><summary>РњРѕР¶РЅРѕ РґРѕСЂР°Р±РѕС‚Р°С‚СЊ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РёР№ СЃР°Р№С‚?</summary><p>Р”Р°. РР·СѓС‡РёРј С‚РµРєСѓС‰СѓСЋ СЃРёСЃС‚РµРјСѓ Рё РѕРїСЂРµРґРµР»РёРј, СЂР°С†РёРѕРЅР°Р»СЊРЅРµРµ Р»Рё СЂР°Р·РІРёРІР°С‚СЊ РµС‘, СЃСѓС‰РµСЃС‚РІРµРЅРЅРѕ РїРµСЂРµСЂР°Р±РѕС‚Р°С‚СЊ РёР»Рё СЃРѕР·РґР°С‚СЊ РЅРѕРІРѕРµ СЂРµС€РµРЅРёРµ.</p></details>
+          <details><summary>Р’С‹ РІС‹РїРѕР»РЅСЏРµС‚Рµ РёРЅС‚РµРіСЂР°С†РёСЋ СЃ 1РЎ?</summary><p>Р”Р°. РџСЂРѕРµРєС‚РёСЂСѓРµРј РѕР±РјРµРЅ СЃ СѓС‡С‘С‚РѕРј СЃС‚СЂСѓРєС‚СѓСЂС‹ РґР°РЅРЅС‹С…, СЃС†РµРЅР°СЂРёРµРІ РѕР±РЅРѕРІР»РµРЅРёСЏ Рё РІРЅСѓС‚СЂРµРЅРЅРёС… РїСЂРѕС†РµСЃСЃРѕРІ РєРѕРјРїР°РЅРёРё.</p></details>
+          <details><summary>Р§С‚Рѕ РїСЂРѕРёСЃС…РѕРґРёС‚ РїРѕСЃР»Рµ Р·Р°РїСѓСЃРєР°?</summary><p>РџСЂРѕРµРєС‚ РјРѕР¶РЅРѕ РїРµСЂРµРґР°С‚СЊ РІ С‚РµС…РЅРёС‡РµСЃРєСѓСЋ РїРѕРґРґРµСЂР¶РєСѓ, SEO Рё РєРѕРЅС‚РµРєСЃС‚РЅСѓСЋ СЂРµРєР»Р°РјСѓ. РљРѕРјР°РЅРґС‹ СЃС‚СѓРґРёРё РїСЂРѕРґРѕР»Р¶Р°С‚ СЂР°Р±РѕС‚Сѓ СЃ РЅР°РєРѕРїР»РµРЅРЅС‹Рј РєРѕРЅС‚РµРєСЃС‚РѕРј.</p></details>
         </div>
       </div>
     </section>
@@ -808,9 +864,9 @@
     <section class="final-cta">
       <div class="container">
         <div class="final-shell reveal">
-          <h2>Обсудим задачу вашего бизнеса</h2>
-          <p>Расскажите о компании и будущем проекте. Предложим подходящий формат и определим следующий шаг.</p>
-          <a class="button-primary" href="#founders">Обсудить проект →</a>
+          <h2>РћР±СЃСѓРґРёРј Р·Р°РґР°С‡Сѓ РІР°С€РµРіРѕ Р±РёР·РЅРµСЃР°</h2>
+          <p>Р Р°СЃСЃРєР°Р¶РёС‚Рµ Рѕ РєРѕРјРїР°РЅРёРё Рё Р±СѓРґСѓС‰РµРј РїСЂРѕРµРєС‚Рµ. РџСЂРµРґР»РѕР¶РёРј РїРѕРґС…РѕРґСЏС‰РёР№ С„РѕСЂРјР°С‚ Рё РѕРїСЂРµРґРµР»РёРј СЃР»РµРґСѓСЋС‰РёР№ С€Р°Рі.</p>
+          <a class="button-primary" href="#founders">РћР±СЃСѓРґРёС‚СЊ РїСЂРѕРµРєС‚ в†’</a>
         </div>
       </div>
     </section>
@@ -818,8 +874,8 @@
 
   <footer>
     <div class="container footer-row">
-      <div>© Редстар 2026 · Ярославль · Работаем по всей России</div>
-      <div class="footer-links"><a href="https://redstaragency.ru/politica">Политика конфиденциальности</a><a href="mailto:hello@redstaragency.ru">hello@redstaragency.ru</a><a href="tel:+79201038130">+7 920 103‑81‑30</a></div>
+      <div>В© Р РµРґСЃС‚Р°СЂ 2026 В· РЇСЂРѕСЃР»Р°РІР»СЊ В· Р Р°Р±РѕС‚Р°РµРј РїРѕ РІСЃРµР№ Р РѕСЃСЃРёРё</div>
+      <div class="footer-links"><a href="https://redstaragency.ru/politica">РџРѕР»РёС‚РёРєР° РєРѕРЅС„РёРґРµРЅС†РёР°Р»СЊРЅРѕСЃС‚Рё</a><a href="mailto:hello@redstaragency.ru">hello@redstaragency.ru</a><a href="tel:+79201038130">+7 920 103вЂ‘81вЂ‘30</a></div>
     </div>
   </footer>
 
@@ -866,13 +922,14 @@
       const name = form.elements.name.value.trim();
       const phone = form.elements.phone.value.trim();
       if (!name || !phone) {
-        status.textContent = 'Заполните имя и контакт для связи.';
+        status.textContent = 'Р—Р°РїРѕР»РЅРёС‚Рµ РёРјСЏ Рё РєРѕРЅС‚Р°РєС‚ РґР»СЏ СЃРІСЏР·Рё.';
         status.style.color = '#ffb29f';
         return;
       }
-      status.textContent = 'Спасибо! Форма готова к подключению к вашей CRM.';
+      status.textContent = 'РЎРїР°СЃРёР±Рѕ! Р¤РѕСЂРјР° РіРѕС‚РѕРІР° Рє РїРѕРґРєР»СЋС‡РµРЅРёСЋ Рє РІР°С€РµР№ CRM.';
       status.style.color = '#aee7c3';
     });
   </script>
 </body>
 </html>
+
