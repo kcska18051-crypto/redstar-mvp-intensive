@@ -467,9 +467,9 @@
       content: "";
       position: absolute;
       z-index: 1;
-      right: 0;
+      right: -74%;
       bottom: -1px;
-      left: 0;
+      left: -4%;
       height: 88px;
       pointer-events: none;
       background: linear-gradient(to bottom, transparent, var(--ink));
@@ -613,6 +613,7 @@
       .after-card { min-height: 260px; }
       .founders-shell { grid-template-columns: 1fr; }
       .founders-media { grid-row: auto; width: 100%; max-width: 720px; min-height: 520px; margin: 0 auto; }
+      .founders-media::after { right: -12%; left: -12%; }
       .founders-media img { left: 53%; width: 122%; height: auto; }
       .founder-name.anna { left: 58%; }
       .founders-intro { grid-column: 1; padding: 36px 42px 20px; }
