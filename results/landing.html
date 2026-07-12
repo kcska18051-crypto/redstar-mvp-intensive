@@ -131,45 +131,6 @@
       -webkit-backdrop-filter: blur(24px) saturate(135%);
     }
 
-    .refractive {
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,.78);
-      background:
-        linear-gradient(128deg, rgba(255,255,255,.62), rgba(255,255,255,.16) 48%, rgba(150,207,255,.18)),
-        radial-gradient(circle at 82% 18%, rgba(255,92,62,.24), transparent 34%);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.92),
-        inset 18px -22px 52px rgba(114,178,255,.08),
-        0 28px 70px rgba(70,54,70,.13);
-      backdrop-filter: blur(28px) saturate(155%);
-      -webkit-backdrop-filter: blur(28px) saturate(155%);
-    }
-    .refractive::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background:
-        linear-gradient(118deg, transparent 12%, rgba(255,255,255,.62) 24%, transparent 36%),
-        radial-gradient(circle at 72% 78%, rgba(99,189,255,.18), transparent 30%);
-      mix-blend-mode: screen;
-      opacity: .72;
-    }
-    .refractive-orb {
-      position: absolute;
-      z-index: -1;
-      width: 300px;
-      aspect-ratio: 1;
-      border-radius: 48% 52% 63% 37% / 43% 39% 61% 57%;
-      pointer-events: none;
-      transform: rotate(var(--rotate, 12deg));
-      opacity: .86;
-    }
-    .orb-one { right: -90px; top: 18%; --rotate: 24deg; }
-    .orb-two { left: -130px; bottom: 4%; width: 360px; --rotate: -17deg; }
-    .orb-three { right: 2%; bottom: -70px; width: 230px; --rotate: 38deg; }
-
     .site-header {
       position: fixed;
       top: 18px;
@@ -296,36 +257,6 @@
       min-height: 560px;
       isolation: isolate;
     }
-    .hero-art::after {
-      content: "";
-      position: absolute;
-      z-index: 2;
-      width: 210px;
-      height: 120px;
-      right: 2%;
-      bottom: 5%;
-      border-radius: 56% 44% 48% 52% / 58% 42% 58% 42%;
-      border: 1px solid rgba(255,255,255,.82);
-      background: linear-gradient(135deg, rgba(255,255,255,.54), rgba(111,189,255,.15));
-      box-shadow: inset 8px 8px 22px rgba(255,255,255,.5), 0 18px 40px rgba(72,92,140,.15);
-      backdrop-filter: blur(19px) saturate(170%);
-      -webkit-backdrop-filter: blur(19px) saturate(170%);
-      transform: rotate(-13deg);
-    }
-    .aura {
-      position: absolute;
-      inset: 8% -8% 3% -20%;
-      border-radius: 50%;
-      background:
-        radial-gradient(circle at 60% 35%, rgba(255,255,255,.95), transparent 16%),
-        radial-gradient(circle at 58% 48%, rgba(255,75,45,.88), transparent 34%),
-        radial-gradient(circle at 75% 63%, rgba(74,168,255,.74), transparent 38%),
-        radial-gradient(circle at 35% 65%, rgba(191,159,255,.55), transparent 40%);
-      filter: blur(44px);
-      opacity: .78;
-      transform: translate3d(var(--mx, 0), var(--my, 0), 0);
-      transition: transform .18s linear;
-    }
     .liquid {
       position: absolute;
       inset: 6% -5% 3% -14%;
@@ -339,17 +270,13 @@
     .liquid-asset {
       position: absolute;
       z-index: 1;
-      top: -5%;
-      right: -22%;
-      width: 148%;
+      top: 5%;
+      right: -18%;
+      width: 137%;
       max-width: none;
-      height: 112%;
-      object-fit: cover;
-      object-position: 72% center;
-      border-radius: 46% 54% 44% 56% / 49% 43% 57% 51%;
-      filter: saturate(1.08) contrast(1.02) drop-shadow(0 32px 42px rgba(95,74,105,.12));
-      -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.45) 13%, #000 30%);
-      mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.45) 13%, #000 30%);
+      height: auto;
+      object-fit: contain;
+      filter: saturate(1.04) contrast(1.02);
       transform: translate3d(calc(var(--mx, 0) * -.45), calc(var(--my, 0) * -.45), 0);
       transition: transform .18s linear;
     }
@@ -639,9 +566,7 @@
       .hero-actions { align-items: stretch; flex-direction: column; }
       .button-primary, .button-secondary { width: 100%; }
       .hero-art { min-height: 350px; }
-      .liquid-asset { top: 0; right: -34%; width: 168%; height: 110%; object-position: 76% center; }
-      .hero-art::after { width: 140px; height: 82px; right: -4%; bottom: 1%; }
-      .refractive-orb { width: 190px; opacity: .62; }
+      .liquid-asset { top: 4%; right: -30%; width: 158%; height: auto; }
       .tag-one { right: 0; }
       .tag-two { left: 0; bottom: 6%; }
       .hero-proof { grid-template-columns: 1fr 1fr; }
@@ -709,8 +634,7 @@
           </div>
         </div>
         <div class="hero-art" aria-hidden="true">
-          <div class="aura"></div>
-          <img class="liquid-asset refractive-hero" src="https://kcska18051-crypto.github.io/redstar-mvp-intensive/assets/hero-liquid-glass-v2.png" alt="" width="1536" height="864" fetchpriority="high">
+          <img class="liquid-asset" src="https://kcska18051-crypto.github.io/redstar-mvp-intensive/assets/hero-glass-object-v3.png" alt="" width="1661" height="947" fetchpriority="high">
           <div class="glass-tag glass tag-one">Полный цикл</div>
           <div class="glass-tag glass tag-two">Дизайн · код · развитие</div>
         </div>
@@ -731,13 +655,12 @@
     </div>
 
     <section class="section" id="services">
-      <div class="refractive-orb refractive orb-one" aria-hidden="true"></div>
       <div class="container">
         <div class="section-label reveal">Что создаём</div>
         <h2 class="section-title reveal">Не просто страницы<br>Цифровые решения</h2>
         <p class="section-lead reveal">Для среднего бизнеса, промышленности, застройщиков, учреждений культуры и организаций со сложными задачами.</p>
         <div class="services-layout">
-          <article class="services-note glass refractive refractive-card reveal">
+          <article class="services-note glass reveal">
             <strong>Сайт работает на бизнес, когда понимает его устройство.</strong>
             <p>Разбираемся в продукте и процессах, чтобы подобрать формат, архитектуру и функции под реальную задачу.</p>
           </article>
@@ -753,7 +676,6 @@
     </section>
 
     <section class="section" id="approach">
-      <div class="refractive-orb refractive orb-two" aria-hidden="true"></div>
       <div class="container">
         <div class="section-label reveal">Полный цикл</div>
         <h2 class="section-title reveal">От исследования<br>до развития</h2>
@@ -783,7 +705,7 @@
         <div class="section-label reveal">Аналитика</div>
         <h2 class="section-title reveal">Сначала понимаем<br>Затем создаём</h2>
         <div class="analysis-visual">
-          <div class="analysis-board glass refractive refractive-panel reveal">
+          <div class="analysis-board glass reveal">
             <p>До первого макета собираем картину проекта и фиксируем решения в понятной форме.</p>
             <div class="analysis-map">
               <div class="analysis-chip"><b>Бизнес</b><span>Цели, продукты, ограничения и точки роста</span></div>
@@ -798,7 +720,6 @@
     </section>
 
     <section class="section" id="technology">
-      <div class="refractive-orb refractive orb-three" aria-hidden="true"></div>
       <div class="container">
         <div class="section-label reveal">Технологии</div>
         <h2 class="section-title reveal">Больше, чем<br>стандартный сайт</h2>
