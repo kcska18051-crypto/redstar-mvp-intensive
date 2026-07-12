@@ -454,19 +454,19 @@
       color: white;
       box-shadow: 0 40px 90px rgba(17,19,24,.24);
     }
-    .founders-media { position: relative; align-self: end; z-index: 1; }
+    .founders-media { position: relative; align-self: end; z-index: 1; min-height: 590px; }
     .founders-media::before {
       content: "";
       position: absolute;
-      inset: 8% -10% 0 -10%;
+      inset: 24% -4% 0 -4%;
       z-index: -1;
-      background: radial-gradient(circle at 52% 48%, rgba(255,81,48,.9), transparent 45%), radial-gradient(circle at 70% 65%, rgba(92,156,255,.56), transparent 44%);
-      filter: blur(34px);
+      background: radial-gradient(circle at 43% 60%, rgba(255,81,48,.9), transparent 46%), radial-gradient(circle at 65% 64%, rgba(92,156,255,.6), transparent 48%);
+      filter: blur(38px);
     }
-    .founders-media img { width: 108%; max-width: none; margin-left: -8%; }
+    .founders-media img { position: absolute; left: 50%; bottom: 0; width: 140%; max-width: none; transform: translateX(-50%); }
     .founder-name { position: absolute; z-index: 2; padding: 11px 15px; border-radius: 999px; background: rgba(255,255,255,.82); color: var(--ink); font-size: 12px; font-weight: 800; backdrop-filter: blur(12px); }
-    .founder-name.oleg { left: 9%; bottom: 15%; }
-    .founder-name.anna { right: 10%; bottom: 26%; }
+    .founder-name.oleg { left: 7%; bottom: 10%; }
+    .founder-name.anna { left: 57%; bottom: 16%; }
     .founders-content { padding: 58px 54px 54px 20px; display: flex; flex-direction: column; justify-content: space-between; z-index: 2; }
     .founders-content h2 { margin: 0; font-size: clamp(42px,5vw,72px); line-height: .98; letter-spacing: -.06em; }
     .founders-content > p { max-width: 520px; color: rgba(255,255,255,.65); font-size: 18px; }
@@ -563,7 +563,9 @@
       .after-grid { grid-template-columns: 1fr; }
       .after-card { min-height: 260px; }
       .founders-shell { grid-template-columns: 1fr; }
-      .founders-media { max-width: 720px; }
+      .founders-media { width: 100%; max-width: 720px; min-height: 520px; margin: 0 auto; }
+      .founders-media img { width: 122%; }
+      .founder-name.anna { left: 58%; }
       .founders-content { padding: 10px 42px 48px; }
     }
 
@@ -613,6 +615,8 @@
       .contact-form { grid-template-columns: 1fr; }
       .form-field, .form-field.full, .form-submit, .form-note, .form-status { grid-column: 1; }
       .founders-shell { border-radius: 32px; }
+      .founders-media { min-height: 390px; }
+      .founders-media img { width: 132%; }
       .founders-content { padding: 8px 24px 32px; }
       .founder-name { font-size: 10px; }
       .final-shell { min-height: 500px; padding: 34px 26px; border-radius: 34px; align-content: end; }
